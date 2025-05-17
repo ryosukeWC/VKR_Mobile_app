@@ -1,5 +1,9 @@
-from fastapi import FastAPI
 from .database import check_db_connection
+
+from fastapi import FastAPI, Depends, HTTPException
+from sqlalchemy.orm import Session
+from . import schemas, crud, models
+from .database import SessionLocal, engine
 
 app = FastAPI()
 
@@ -10,3 +14,22 @@ async def healthcheck():
         "api": "running",
         "database": db_status
     }
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
+@app.get("/restaurants/", response_model=list[schemas.Restaurant])
+def read_restaurants(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    restaurants = crud.get_restaurants(db, skip=skip, limit=limit)
+    return restaurants
+
+@app.get("/restaurants/{restaurant_id}", response_model=schemas.Restaurant)
+def read_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
+    db_restaurant = crud.get_restaurant(db, restaurant_id=restaurant_id)
+    if db_restaurant is None:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+    return db_restaurant
