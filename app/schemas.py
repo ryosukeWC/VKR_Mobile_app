@@ -1,5 +1,5 @@
 from pydantic import BaseModel, field_serializer
-from datetime import time, datetime
+from datetime import time, datetime, date
 from typing import Optional
 
 class RestaurantBase(BaseModel):
@@ -23,6 +23,26 @@ class Restaurant(RestaurantBase):
     @field_serializer('open_time', 'close_time')
     def serialize_time(self, t: time, _info):
         return t.strftime("%H:%M")
+
+    class Config:
+        from_attributes = True
+
+class ReservationCreate(BaseModel):
+    user_id: int  # Теперь принимаем user_id напрямую
+    restaurant_id: int
+    reservation_date: date
+    reservation_time: str  # Формат "HH:MM"
+    guests: int
+
+class Reservation(BaseModel):
+    reservation_id: int
+    user_id: int
+    restaurant_id: int
+    reservation_date: date
+    reservation_time: datetime
+    guests: int
+    status: str
+    created_at: datetime
 
     class Config:
         from_attributes = True
