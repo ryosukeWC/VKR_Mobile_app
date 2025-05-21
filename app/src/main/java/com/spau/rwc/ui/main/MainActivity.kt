@@ -32,21 +32,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
-
         setupNavigation()
 
     }
 
     private fun setupNavigation() {
-        // Получаем NavHostFragment
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
-        // Получаем NavController
         navController = navHostFragment.navController
 
-        // Связываем BottomNavigationView с NavController
         binding.bottomNavigation.setupWithNavController(navController)
 
         // Обработка навигационных событий
@@ -58,6 +53,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.history -> {
                     navController.navigate(R.id.fragmentBookingHistory)
+                    true
+                }
+                R.id.profile -> {
+                    navController.navigate(R.id.fragmentProfile)
                     true
                 }
                 else -> false

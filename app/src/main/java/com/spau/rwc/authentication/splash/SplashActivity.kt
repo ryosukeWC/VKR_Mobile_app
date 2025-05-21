@@ -1,8 +1,9 @@
-package com.spau.rwc.authentication
+package com.spau.rwc.authentication.splash
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.spau.rwc.authentication.SessionManager
 import com.spau.rwc.authentication.data.AuthActivity
 import com.spau.rwc.ui.main.MainActivity
 

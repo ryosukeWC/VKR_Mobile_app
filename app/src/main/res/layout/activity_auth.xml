@@ -13,12 +13,12 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Логотип приложения -->
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
+            android:src="@drawable/logo_auth"
             android:contentDescription="@string/app_name" />
 
         <!-- Заголовок -->
@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:text="@string/auth_title"
             android:textSize="24sp"
-            android:textStyle="bold"
+            android:textColor="#1F2937"
+            android:fontFamily="@font/inter_semibold"
             android:layout_marginBottom="24dp" />
 
         <!-- Поле для email -->
@@ -36,7 +37,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -70,21 +71,24 @@
         <!-- Кнопка входа -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            style="@style/Widget.MaterialComponents.Button"
+            style="@style/LoginButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_button_registration"
+            android:backgroundTint="#32B768"
             android:text="@string/login_button"
-            app:iconGravity="start"
-            app:iconTint="@color/white" />
+            app:iconGravity="start" />
 
         <!-- Кнопка регистрации -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            style="@style/ButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/shape_button_registration"
+            android:backgroundTint="#D1FAE5"
             android:text="@string/register_button"
             app:iconGravity="start" />
 
@@ -101,47 +105,47 @@
             android:focusable="true" />
 
         <!-- Разделитель -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/or_continue_with"
-            android:textAlignment="center"
-            android:layout_marginBottom="16dp" />
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/or_continue_with"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_marginBottom="16dp" />-->
 
         <!-- Социальные сети -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="32dp">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginBottom="32dp">-->
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                app:iconSize="24dp"-->
+<!--                app:iconTint="@null"-->
+<!--                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />-->
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                app:iconSize="24dp"
-                app:iconTint="@null"
-                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:layout_marginEnd="8dp"-->
+<!--                app:iconSize="24dp"-->
+<!--                app:iconTint="@null"-->
+<!--                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />-->
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnPhoneAuth"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:iconSize="24dp"
-                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />
-        </LinearLayout>
+<!--            <com.google.android.material.button.MaterialButton-->
+<!--                android:id="@+id/btnPhoneAuth"-->
+<!--                style="@style/Widget.MaterialComponents.Button.OutlinedButton"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                app:iconSize="24dp"-->
+<!--                app:shapeAppearance="@style/ShapeAppearance.MaterialComponents.Circle" />-->
+<!--        </LinearLayout>-->
 
         <!-- Прогресс-бар -->
         <ProgressBar

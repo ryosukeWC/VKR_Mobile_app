@@ -27,5 +27,9 @@
         android:id="@+id/fragmentBookingHistory"
         android:name="com.spau.rwc.ui.booking_history.FragmentBookingHistory"
         android:label="FragmentBookingHistory" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.spau.rwc.ui.profile.FragmentProfile"
+        android:label="FragmentProfile" />
 
 </navigation>

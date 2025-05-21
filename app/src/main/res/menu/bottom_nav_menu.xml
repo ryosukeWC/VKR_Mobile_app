@@ -12,7 +12,7 @@
         android:title="Мои брони" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/profile"
         android:icon="@drawable/icon_profile"
         android:title="Профиль" />
 

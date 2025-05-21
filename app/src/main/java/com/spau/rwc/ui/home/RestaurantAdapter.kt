@@ -44,6 +44,7 @@ class RestaurantAdapter : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewH
                 findViewById<TextView>(R.id.name).text = restaurant.name
 
                 findViewById<ImageView>(R.id.image).load(restaurant.logoUrl)
+                findViewById<TextView>(R.id.address).text = restaurant.address
 
                 setOnClickListener { onItemClick?.invoke(restaurant) }
             }

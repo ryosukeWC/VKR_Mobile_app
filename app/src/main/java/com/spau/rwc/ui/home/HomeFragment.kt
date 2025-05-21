@@ -1,6 +1,7 @@
 package com.spau.rwc.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +27,6 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: RestaurantAdapter
 
     private val viewModel: RestaurantViewModel by viewModels()
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = HomeBinding.inflate(inflater, container, false)

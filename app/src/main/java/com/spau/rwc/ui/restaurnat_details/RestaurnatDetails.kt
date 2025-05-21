@@ -21,6 +21,7 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.spau.rwc.R
 import com.spau.rwc.databinding.FragmentRestaurnatDetailsBinding
 import com.spau.rwc.model.BookingItem
+import com.spau.rwc.model.Restaurant
 import com.spau.rwc.ui.booking_history.BookingsViewModel
 import com.spau.rwc.ui.booking_history.FragmentBookingHistory
 import com.spau.rwc.ui.restaurnat_details.timeslots.TimeSlotAdapter
@@ -39,6 +40,8 @@ class RestaurnatDetails : Fragment() {
 
     private val bookingsViewModel: BookingsViewModel by activityViewModels()
 
+    private lateinit var restaurant: Restaurant
+
     private lateinit var selectedDate: String
     private lateinit var selectedTime: String
     private var selectedPeople = 1
@@ -54,12 +57,22 @@ class RestaurnatDetails : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        restaurant = arguments?.getParcelable("restaurant") ?: throw IllegalStateException("Restaurant not passed")
+
         val viewDate = binding.viewDate
         val viewTime = binding.viewTime
         val viewPeople = binding.viewPeople
         val tvDate = binding.date
         val tvTime = binding.tvTime
         val tvPeople = binding.tvPeople
+
+        with(binding) {
+            detailsName.text = restaurant.name
+            address.text = restaurant.address
+            // добавить картинку
+        }
+
+
 
         // Обработка выбора даты
         viewDate.setOnClickListener {
@@ -165,17 +178,12 @@ class RestaurnatDetails : Fragment() {
 
         // Тестовые данные
         val timeSlots = listOf(
-            TimeSlotAdapter.TimeSlot("10:00 - 11:00", "Столик у окна (4 персоны)", true),
-            TimeSlotAdapter.TimeSlot("11:00 - 12:00", "Столик в центре (2 персоны)", true),
-            TimeSlotAdapter.TimeSlot("12:00 - 13:00", "Столик в VIP-зоне (6 персон)", false),
-            TimeSlotAdapter.TimeSlot("13:00 - 14:00", "Столик у окна (4 персоны)", true),
-            TimeSlotAdapter.TimeSlot("14:00 - 15:00", "Столик в саду (2 персоны)", true),
             TimeSlotAdapter.TimeSlot("15:00 - 16:00", "Столик в VIP-зоне (6 персон)", true),
-            TimeSlotAdapter.TimeSlot("16:00 - 17:00", "Столик у бара (2 персоны)", false)
+            TimeSlotAdapter.TimeSlot("16:00 - 17:00", "Столик у бара (2 персоны)", true)
         )
 
         val adapter = TimeSlotAdapter(timeSlots) { selectedSlot ->
-            val restaurantName = binding.tavaRestau.text.toString()
+            val restaurantName = binding.detailsName.text.toString()
             val address = binding.address.text.toString()
             val date = binding.date.text.toString()
             val time = selectedSlot.time.split(" - ")[0]

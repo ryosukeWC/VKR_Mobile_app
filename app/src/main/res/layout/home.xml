@@ -9,13 +9,36 @@
     >
 
     <TextView
+        android:id="@+id/agrabad_435"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_alignParentTop="true"
+        android:fontFamily="@font/inter_medium"
+        android:gravity="center"
+        android:layout_marginTop="34dp"
+        android:text="Ярославль"
+        android:textAppearance="@style/agrabad_435"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/icon_gps"
+        app:layout_constraintBottom_toBottomOf="@+id/agrabad_435"
+        app:layout_constraintEnd_toStartOf="@+id/agrabad_435"
+        app:layout_constraintTop_toTopOf="@+id/agrabad_435" />
+
+    <TextView
         android:id="@+id/booking_res"
         android:layout_width="160dp"
         android:layout_height="21dp"
         android:gravity="top"
         android:layout_marginTop="28dp"
         android:layout_marginStart="18dp"
-        android:text="Booking Restaurant"
+        android:text="Рестораны"
         android:fontFamily="@font/inter_semibold"
         android:textAppearance="@style/booking_res"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +52,7 @@
         android:layout_marginTop="4dp"
         android:fontFamily="@font/inter_medium"
         android:gravity="top"
-        android:text="Check your city Near by Restaurant"
+        android:text="Рестораны в вашем городе"
         android:textAppearance="@style/best_of_the"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/booking_res" />
@@ -66,21 +89,21 @@
         app:layout_constraintTop_toTopOf="@id/see_all_button"
         tools:ignore="ContentDescription" />
 
-
-
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="280dp"
         android:layout_height="36dp"
         android:layout_marginHorizontal="48dp"
-        android:searchIcon="@drawable/icon_search"
+        android:background="@drawable/search_bar_background"
+        android:backgroundTint="#E6E7E9"
+        android:layout_marginTop="16dp"
         android:iconifiedByDefault="false"
         android:queryHint="Поиск"
+        android:searchIcon="@drawable/icon_search"
+        android:theme="@style/CustomSearchView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/CustomSearchView"
-        android:background="@drawable/search_bar_background">
+        app:layout_constraintTop_toBottomOf="@+id/agrabad_435">
 
     </SearchView>
 

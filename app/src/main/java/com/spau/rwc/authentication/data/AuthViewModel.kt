@@ -5,15 +5,21 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.PhoneAuthCredential
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+
 class AuthViewModel : ViewModel() {
+
     private val authManager = AuthManager()
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState: StateFlow<AuthState> = _authState
+
+    var isLoggedOut = false
+        private set
 
     // Состояния аутентификации
     sealed class AuthState {
@@ -27,14 +33,14 @@ class AuthViewModel : ViewModel() {
     }
 
     // Регистрация по email
-    fun registerWithEmail(email: String, password: String) {
+    fun registerWithEmail(name: String, email: String, phone: String, password: String) {
         _authState.value = AuthState.Loading
         viewModelScope.launch {
-            authManager.registerWithEmail(email, password) { user, error ->
+            authManager.registerWithEmail(name, email, phone, password) { user, error ->
                 if (user != null) {
                     _authState.value = AuthState.VerificationEmailSent
                 } else {
-                    _authState.value = AuthState.Error(error ?: "Unknown error")
+                    _authState.value = AuthState.Error(error ?: "Registration failed")
                 }
             }
         }
@@ -106,7 +112,11 @@ class AuthViewModel : ViewModel() {
 
     // Выход
     fun logout() {
-        authManager.logout()
-        _authState.value = AuthState.Idle
+        _authState.value = AuthState.Loading
+        viewModelScope.launch {
+            authManager.logout()
+            isLoggedOut = true
+            _authState.value = AuthState.Idle
+        }
     }
 }

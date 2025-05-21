@@ -49,7 +49,7 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/booking_more_button"
         android:layout_width="182dp"
-        android:layout_height="43dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#FFFFFF"
         android:fontFamily="@font/inter_medium"
@@ -58,7 +58,6 @@
         android:textColor="#6B7280"
         android:textSize="16sp"
         app:cornerRadius="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/restaurants_recycler_view" />

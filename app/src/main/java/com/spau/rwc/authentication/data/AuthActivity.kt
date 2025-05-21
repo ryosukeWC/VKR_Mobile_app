@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.spau.rwc.authentication.registration.RegisterBottomSheetFragment
 import com.spau.rwc.databinding.ActivityAuthBinding
 import com.spau.rwc.ui.main.MainActivity
 import kotlinx.coroutines.Job
@@ -76,11 +77,8 @@ class AuthActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.btnRegister.setOnClickListener {
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
-
-            if (validateInput(email, password)) {
-                viewModel.registerWithEmail(email, password)
+            binding.btnRegister.setOnClickListener {
+                showRegisterBottomSheet()
             }
         }
 
@@ -105,7 +103,7 @@ class AuthActivity : AppCompatActivity() {
 
     private fun validateInput(email: String, password: String): Boolean {
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Заполните все поля", Toast.LENGTH_SHORT).show()
             return false
         }
         return true
@@ -117,5 +115,13 @@ class AuthActivity : AppCompatActivity() {
 
     private fun showCodeInput(verificationId: String) {
         // Реализуйте экран для ввода кода из SMS
+    }
+
+    private fun showRegisterBottomSheet() {
+        val bottomSheet = RegisterBottomSheetFragment()
+        bottomSheet.onRegisterClicked = { name, email, phone, password ->
+            viewModel.registerWithEmail(name, email, phone, password)
+        }
+        bottomSheet.show(supportFragmentManager, RegisterBottomSheetFragment.TAG)
     }
 }

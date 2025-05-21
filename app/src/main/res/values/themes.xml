@@ -102,4 +102,29 @@
         <item name="android:background">@drawable/bg_bottom_sheet</item>
     </style>
 
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#D1FAE5</item>
+        <item name="android:textColor">#10B981</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="LoginButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#32B768</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="agrabad_435">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#4B5563</item>
+    </style>
+
+    <!-- styles.xml -->
+    <style name="sadek_hosse">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#374151</item>
+    </style>
+
 </resources>
