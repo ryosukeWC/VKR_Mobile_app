@@ -1,6 +1,7 @@
-from pydantic import BaseModel, field_serializer
+from pydantic import BaseModel, field_serializer, EmailStr
 from datetime import time, datetime, date
-from typing import Optional
+from typing import Optional, List
+
 
 class RestaurantBase(BaseModel):
     restaurant_name: str
@@ -28,13 +29,13 @@ class Restaurant(RestaurantBase):
         from_attributes = True
 
 class ReservationCreate(BaseModel):
-    user_id: int  # Теперь принимаем user_id напрямую
     restaurant_id: int
-    reservation_date: date
-    reservation_time: str  # Формат "HH:MM"
+    user_email: str  # Используем email вместо user_id
+    reservation_date: date  # Формат: YYYY-MM-DD
+    reservation_time: str   # Формат: HH:MM
     guests: int
 
-class Reservation(BaseModel):
+class ReservationResponse(BaseModel):
     reservation_id: int
     user_id: int
     restaurant_id: int
@@ -46,3 +47,5 @@ class Reservation(BaseModel):
 
     class Config:
         from_attributes = True
+
+

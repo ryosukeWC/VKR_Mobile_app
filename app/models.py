@@ -21,40 +21,32 @@ class Restaurant(Base):
     def __repr__(self):
         return f"<Restaurant(id={self.restaurant_id}, name='{self.restaurant_name}')>"
 
-
-class Reservation(Base):
-    __tablename__ = 'reservations'
-
-    reservation_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey('users.user_id'))
-    restaurant_id = Column(Integer, ForeignKey('restaurants.restaurant_id'))
-    reservation_date = Column(Date)
-    reservation_time = Column(DateTime)
-    guests = Column(Integer)
-    status = Column(String, default='pending')
-    created_at = Column(DateTime, server_default='now()')
-
 class User(Base):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     user_id = Column(Integer, primary_key=True, index=True)
     user_name = Column(String(100), nullable=False)
     user_phone = Column(String(20))
     user_email = Column(String(255), nullable=False, unique=True)
-    date_of_created = Column(TIMESTAMP(timezone=True), server_default=func.now())
-    isAdmin = Column(Boolean, default=False)
+    date_of_created = Column(DateTime(timezone=True), server_default=func.now())
+    isadmin = Column(Boolean, default=False)
     email_confirmed = Column(Boolean, default=False)
 
-
-class DBReservation(Base):  # Именно этот класс используется в CRUD
-    __tablename__ = 'reservations'
-    __table_args__ = {'extend_existing': True}
+class Reservation(Base):
+    __tablename__ = "reservations"
 
     reservation_id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey('users.user_id', ondelete='CASCADE'), nullable=False)
-    restaurant_id = Column(Integer, ForeignKey('restaurants.restaurant_id', ondelete='CASCADE'), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.user_id"), nullable=False)
+    restaurant_id = Column(Integer, ForeignKey("restaurants.restaurant_id"), nullable=False)
     reservation_date = Column(Date, nullable=False)
-    reservation_time = Column(TIMESTAMP(timezone=True), nullable=False)
+    reservation_time = Column(TIMESTAMP, nullable=False)  # Храним дату+время
     guests = Column(Integer, nullable=False)
-    status = Column(String(20), default='pending')
+    status = Column(String(20), default="pending")  # pending/confirmed/cancelled
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now())
+
+class ReservationTable(Base):
+    __tablename__ = "reservation_tables"
+
+    reservation_id = Column(Integer, ForeignKey("reservations.reservation_id"), primary_key=True)
+    table_id = Column(Integer, ForeignKey("tables.table_id"), primary_key=True)
+

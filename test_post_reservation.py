@@ -4,11 +4,12 @@ import json
 
 client = TestClient(app)
 
+
 def test_create_reservation():
     # Тестовые данные
     test_data = {
-        "user_id": 1,
         "restaurant_id": 1,
+        "user_email": "killua70ld1k@gmail.com",  # Используем тестовый email
         "reservation_date": "2023-12-31",
         "reservation_time": "19:00",
         "guests": 4
@@ -24,3 +25,6 @@ def test_create_reservation():
     assert response.status_code == 200
     assert "reservation_id" in response.json()
     print("\nТест пройден! Ответ сервера:", response.json())
+
+if __name__ == "__main__":
+    test_create_reservation()
