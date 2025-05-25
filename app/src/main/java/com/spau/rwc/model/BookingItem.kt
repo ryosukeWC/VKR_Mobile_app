@@ -6,4 +6,5 @@ data class BookingItem(
     val bookingDate: String,
     val bookingTime: String,
     val status: String
+
 )

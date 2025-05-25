@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,8 +26,8 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
     private lateinit var binding: HomeBinding
     private lateinit var adapter: RestaurantAdapter
-
     private val viewModel: RestaurantViewModel by viewModels()
+    private var originalRestaurants = emptyList<Restaurant>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = HomeBinding.inflate(inflater, container, false)
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        setupSearchView()
         loadData()
         setupObservers()
     }
@@ -57,6 +59,31 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupSearchView() {
+        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterRestaurants(newText.orEmpty())
+                return true
+            }
+        })
+    }
+
+    private fun filterRestaurants(query: String) {
+        val filteredList = if (query.isEmpty()) {
+            originalRestaurants
+        } else {
+            originalRestaurants.filter {
+                it.name.contains(query, ignoreCase = true) ||
+                        it.address.contains(query, ignoreCase = true)
+            }
+        }
+        adapter.submitList(filteredList)
+    }
+
     private fun loadData() {
         viewModel.loadRestaurants()
     }
@@ -65,10 +92,10 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.restaurants.collect { restaurants ->
+                    originalRestaurants = restaurants
                     adapter.submitList(restaurants)
                 }
             }
         }
     }
-
 }

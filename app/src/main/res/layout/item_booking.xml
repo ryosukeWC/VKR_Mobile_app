@@ -4,41 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="120dp"
+    android:layout_height="165dp"
     android:layout_marginHorizontal="18dp"
     android:background="@drawable/item_background"
     android:elevation="10dp"
     android:outlineProvider="background"
     android:layout_marginBottom="16dp"
     >
-
-    <!-- ImageView для иконки ресторана -->
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginVertical="12dp"
-        android:src="@drawable/icon_restaurant"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
-
     <!-- Название заведения -->
+
     <TextView
         android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="Название заведения"
+        android:fontFamily="@font/inter_semibold"
         android:gravity="start|center_vertical"
+        android:text="Название заведения"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:fontFamily="@font/inter_semibold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/image"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Иконка GPS -->
@@ -46,12 +32,11 @@
         android:id="@+id/imageView"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="8dp"
         android:src="@drawable/icon_gps"
-        app:layout_constraintStart_toEndOf="@id/image"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        tools:ignore="ContentDescription"/>
+        app:layout_constraintBottom_toBottomOf="@+id/address"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/address"
+        tools:ignore="ContentDescription" />
 
     <!-- Адрес -->
     <TextView
@@ -87,17 +72,66 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/name" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/booking_date"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="15dp"-->
-<!--        android:text="20 декабря 2025"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:textSize="12sp"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/address"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/imageView"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/address">-->
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Потверждено"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="#00A144"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
-<!--    </TextView>-->
+    <ImageView
+        android:id="@+id/iv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_date"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/status">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/iv_date"
+        android:text="17 мая 2025"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_regular"
+        android:textColor="#666666"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@+id/status">
+    </TextView>
+
+    <ImageView
+        android:id="@+id/iv_people"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_people"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/iv_date">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv_people"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_regular"
+        android:text="2 гостя"
+        android:layout_marginStart="15dp"
+        android:textColor="#666666"
+        android:textSize="12sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_people"
+        app:layout_constraintTop_toBottomOf="@+id/date">
+
+    </TextView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

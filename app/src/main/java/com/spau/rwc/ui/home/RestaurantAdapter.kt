@@ -11,9 +11,7 @@ import com.spau.rwc.R
 import com.spau.rwc.model.Restaurant
 
 class RestaurantAdapter : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewHolder>() {
-
     private var restaurants = emptyList<Restaurant>()
-
     private var onItemClick: ((Restaurant) -> Unit)? = null
 
     fun submitList(newList: List<Restaurant>) {
@@ -39,13 +37,11 @@ class RestaurantAdapter : RecyclerView.Adapter<RestaurantAdapter.RestaurantViewH
 
     inner class RestaurantViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(restaurant: Restaurant) {
-
             itemView.apply {
                 findViewById<TextView>(R.id.name).text = restaurant.name
-
+                findViewById<TextView>(R.id.rating_restaurant).text = restaurant.rating.toString()
                 findViewById<ImageView>(R.id.image).load(restaurant.logoUrl)
                 findViewById<TextView>(R.id.address).text = restaurant.address
-
                 setOnClickListener { onItemClick?.invoke(restaurant) }
             }
         }

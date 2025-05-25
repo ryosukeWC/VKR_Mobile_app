@@ -45,6 +45,17 @@
         tools:listitem="@layout/item_booking"
         />
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
     <!-- Кнопка Booking more -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/booking_more_button"

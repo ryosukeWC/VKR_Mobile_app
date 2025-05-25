@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.spau.rwc.R
+import com.spau.rwc.common.OpenMaps
 import com.spau.rwc.databinding.FragmentRestaurnatDetailsBinding
 import com.spau.rwc.model.BookingItem
 import com.spau.rwc.model.Restaurant
@@ -71,8 +72,7 @@ class RestaurnatDetails : Fragment() {
             address.text = restaurant.address
             // добавить картинку
         }
-
-
+        openMapsClick(restaurant)
 
         // Обработка выбора даты
         viewDate.setOnClickListener {
@@ -213,5 +213,12 @@ class RestaurnatDetails : Fragment() {
         }
 
         dialog.show()
+    }
+
+    private fun openMapsClick(restaurant: Restaurant) {
+        binding.tvOpenMaps.setOnClickListener {
+            val openMaps = OpenMaps(requireContext())
+            openMaps.showMapChooserDialog(restaurant.address)
+        }
     }
 }

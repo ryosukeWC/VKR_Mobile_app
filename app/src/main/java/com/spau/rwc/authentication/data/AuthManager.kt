@@ -11,31 +11,6 @@ import java.util.concurrent.TimeUnit
 class AuthManager {
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    // Регистрация по email и паролю
-    fun registerWithEmail(
-        email: String,
-        password: String,
-        callback: (FirebaseUser?, String?) -> Unit
-    ) {
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val user = auth.currentUser
-                    user?.sendEmailVerification()?.addOnCompleteListener { verificationTask ->
-                        if (verificationTask.isSuccessful) {
-                            callback(user, null)
-                        } else {
-                            callback(null, verificationTask.exception?.message)
-                        }
-                    } ?: run {
-                        callback(null, "User is null")
-                    }
-                } else {
-                    callback(null, task.exception?.message)
-                }
-            }
-    }
-
     fun registerWithEmail(
         name: String,
         email: String,
@@ -54,15 +29,6 @@ class AuthManager {
                                 callback(null, verificationError)
                                 return@sendVerificationEmail
                             }
-
-                            // 2. Сохраняем дополнительные данные в Firestore
-//                            saveUserData(firebaseUser.uid, name, email, phone) { dbError ->
-//                                if (dbError != null) {
-//                                    callback(null, dbError)
-//                                } else {
-//                                    callback(firebaseUser, null)
-//                                }
-//                            }
                         }
                     } ?: run {
                         callback(null, "User is null")
@@ -86,32 +52,6 @@ class AuthManager {
                 }
             }
     }
-
-//    private fun saveUserData(
-//        userId: String,
-//        name: String,
-//        email: String,
-//        phone: String,
-//        callback: (String?) -> Unit
-//    ) {
-//        val userData = hashMapOf(
-//            "name" to name,
-//            "email" to email,
-//            "phone" to phone,
-//            "createdAt" to FieldValue.serverTimestamp(),
-//            "isAdmin" to false // По умолчанию пользователь не админ
-//        )
-//
-//        db.collection("users")
-//            .document(userId)
-//            .set(userData)
-//            .addOnSuccessListener {
-//                callback(null)
-//            }
-//            .addOnFailureListener { e ->
-//                callback(e.message)
-//            }
-//    }
 
     // Вход по email и паролю
     fun loginWithEmail(
