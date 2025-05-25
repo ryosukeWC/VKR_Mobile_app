@@ -1,6 +1,5 @@
 package com.spau.rwc.network.remote
 
-import android.util.Log
 import com.spau.rwc.network.remote.api.RestaurantApi
 import com.spau.rwc.network.remote.dto.ReservationResponse
 import com.spau.rwc.network.remote.dto.RestaurantDto

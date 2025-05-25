@@ -45,7 +45,7 @@ class FragmentBookingHistory : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bookingsViewModel.loadRestaurants()
+        bookingsViewModel.loadRestaurantsAndReservations()
 
         setupRecyclerView()
         setupClickListeners()
@@ -87,14 +87,14 @@ class FragmentBookingHistory : Fragment() {
     private fun observeReservations() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                bookingsViewModel.reservations.collect { reservations ->
-                    if (reservations.isEmpty()) {
-                        val test = listOf(
-                            Reservation(1, 1, 1, LocalDate.parse("2023-12-31"), LocalTime.parse("02:00"), 2, "pending", "now")
-                        )
-                        adapter.update(test)
-                    } else {
-                        adapter.update(reservations)
+                launch {
+                    bookingsViewModel.reservations.collect { reservations ->
+                        adapter.updateReservations(reservations)
+                    }
+                }
+                launch {
+                    bookingsViewModel.restaurantsMap.collect { restaurantMap ->
+                        adapter.updateRestaurants(restaurantMap)
                     }
                 }
             }
