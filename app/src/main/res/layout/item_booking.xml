@@ -62,15 +62,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="12dp"
         android:background="@drawable/book_button_background"
-        android:gravity="center"
-        android:text="Бронь"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter_semibold"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="center"
+        android:text="Отменить"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/status"

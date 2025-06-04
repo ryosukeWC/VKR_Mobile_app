@@ -61,12 +61,7 @@ class BookingsViewModel @Inject constructor(
         }
     }
 
-    private val _bookings = MutableLiveData<List<BookingItem>>()
-    val bookings: LiveData<List<BookingItem>> = _bookings
+    fun addBooking(newBooking: Reservation) {
 
-    fun addBooking(newBooking: BookingItem) {
-        val current = _bookings.value.orEmpty().toMutableList()
-        current.add(0, newBooking)
-        _bookings.value = current
     }
 }

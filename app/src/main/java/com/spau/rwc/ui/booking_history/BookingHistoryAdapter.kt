@@ -3,11 +3,15 @@ package com.spau.rwc.ui.booking_history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.spau.rwc.R
 import com.spau.rwc.model.Reservation
 import com.spau.rwc.model.Restaurant
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 class BookingHistoryAdapter(
     private var bookingItems: List<Reservation>,
@@ -21,6 +25,7 @@ class BookingHistoryAdapter(
         val date: TextView = itemView.findViewById(R.id.date)
         val people: TextView = itemView.findViewById(R.id.tv_people)
         val status: TextView = itemView.findViewById(R.id.status)
+        val bookButton: TextView = itemView.findViewById(R.id.book_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookingHistoryViewHolder {
@@ -39,14 +44,23 @@ class BookingHistoryAdapter(
         holder.people.text = item.guests.toString()
         holder.status.text = item.status
 
-        // Цвет текста статуса
         val context = holder.itemView.context
-        when (item.status.lowercase()) {
+        val statusLower = item.status.lowercase()
+        val today = LocalDate.now()
+
+        // Установка цвета статуса
+        when (statusLower) {
             "подтверждено" -> holder.status.setTextColor(context.getColor(R.color.status_confirmed))
             "ждет подтверждения" -> holder.status.setTextColor(context.getColor(R.color.status_pending))
             "отклонено" -> holder.status.setTextColor(context.getColor(R.color.status_declined))
             else -> holder.status.setTextColor(context.getColor(R.color.black))
         }
+
+        // Логика показа кнопки
+        val shouldShowButton = (statusLower == "подтверждено" || statusLower == "ждет подтверждения") &&
+                item.date >= today
+
+        holder.bookButton.visibility = if (shouldShowButton) View.VISIBLE else View.GONE
 
         holder.itemView.setOnClickListener { onItemClick(item) }
     }
@@ -55,7 +69,7 @@ class BookingHistoryAdapter(
     override fun getItemCount(): Int = bookingItems.size
 
     fun updateReservations(newItems: List<Reservation>) {
-        bookingItems = newItems
+        bookingItems = newItems.sortedByDescending { it.date }
         notifyDataSetChanged()
     }
 

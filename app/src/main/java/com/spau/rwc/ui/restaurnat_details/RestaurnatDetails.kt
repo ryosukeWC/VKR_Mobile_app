@@ -24,7 +24,6 @@ import com.spau.rwc.databinding.FragmentRestaurnatDetailsBinding
 import com.spau.rwc.model.BookingItem
 import com.spau.rwc.model.Restaurant
 import com.spau.rwc.ui.booking_history.BookingsViewModel
-import com.spau.rwc.ui.booking_history.FragmentBookingHistory
 import com.spau.rwc.ui.restaurnat_details.timeslots.TimeSlotAdapter
 import com.spau.rwc.ui.restaurnat_details.util.ViewDimensions
 import java.util.Calendar
@@ -70,7 +69,8 @@ class RestaurnatDetails : Fragment() {
         with(binding) {
             detailsName.text = restaurant.name
             address.text = restaurant.address
-            // добавить картинку
+            descriptionText.text = restaurant.description
+            am1200Pm.text = "${restaurant.openTime} - ${restaurant.closeTime}"
         }
         openMapsClick(restaurant)
 
@@ -179,7 +179,8 @@ class RestaurnatDetails : Fragment() {
         // Тестовые данные
         val timeSlots = listOf(
             TimeSlotAdapter.TimeSlot("15:00 - 16:00", "Столик в VIP-зоне (6 персон)", true),
-            TimeSlotAdapter.TimeSlot("16:00 - 17:00", "Столик у бара (2 персоны)", true)
+            TimeSlotAdapter.TimeSlot("16:00 - 17:00", "Столик у бара (2 персоны)", true),
+            TimeSlotAdapter.TimeSlot("16:00 - 17:00", "Столик у окна (4 персоны)", true)
         )
 
         val adapter = TimeSlotAdapter(timeSlots) { selectedSlot ->
@@ -193,9 +194,9 @@ class RestaurnatDetails : Fragment() {
                 address,
                 date,
                 time,
-                "Confirmed"
+                "Ждет потверждения"
             )
-            bookingsViewModel.addBooking(newBooking)
+            // bookingsViewModel.addBooking(newBooking)
 
             binding.tvTime.text = selectedSlot.time
             dialog.dismiss()

@@ -105,7 +105,14 @@ class FragmentBookingHistory : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 bookingsViewModel.isLoading.collect { isLoading ->
-                    binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+                    if (isLoading) {
+                        binding.progressBar.visibility = View.VISIBLE
+                        binding.restaurantsRecyclerView.visibility = View.GONE
+                    } else {
+                        delay(2000) // Задержка перед скрытием прогрессбара
+                        binding.progressBar.visibility = View.GONE
+                        binding.restaurantsRecyclerView.visibility = View.VISIBLE
+                    }
                 }
             }
         }

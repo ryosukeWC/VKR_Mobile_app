@@ -4,11 +4,11 @@ object ViewDimensions {
 
     // Размеры для View Date
     const val DATE_ORIGINAL_WIDTH = 95
-    const val DATE_EXPANDED_WIDTH = 440
+    const val DATE_EXPANDED_WIDTH = 380
 
     // Размеры для View Time
     const val TIME_ORIGINAL_WIDTH = 106
-    const val TIME_EXPANDED_WIDTH = 255
+    const val TIME_EXPANDED_WIDTH = 272
 
     // Размеры для View People
     const val PEOPLE_ORIGINAL_WIDTH = 106
