@@ -14,6 +14,22 @@ def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.user_email == email).first()
 
 
+def get_reservations_by_email(db: Session, email: str):
+    user = get_user_by_email(db, email)
+    if not user:
+        return None
+
+    return (
+        db.query(Reservation)
+        .filter(Reservation.user_id == user.user_id)
+        .order_by(
+            Reservation.reservation_date.desc(),
+            Reservation.reservation_time.desc()
+        )
+        .all()
+    )
+
+
 def create_reservation(db: Session, reservation_data):
     # Находим пользователя по email
     user = get_user_by_email(db, reservation_data.user_email)
@@ -41,10 +57,13 @@ def create_reservation(db: Session, reservation_data):
     db.refresh(reservation)
 
     # Привязываем к столу №1
-    db.add(ReservationTable(
+
+    tables = ReservationTable(
         reservation_id=reservation.reservation_id,
         table_id=1
-    ))
+    )
+
+    db.add(tables)
     db.commit()
 
     return reservation

@@ -46,7 +46,6 @@ class Reservation(Base):
 
 class ReservationTable(Base):
     __tablename__ = "reservation_tables"
-
-    reservation_id = Column(Integer, ForeignKey("reservations.reservation_id"), primary_key=True)
-    table_id = Column(Integer, ForeignKey("tables.table_id"), primary_key=True)
+    reservation_id = Column(Integer, ForeignKey("reservations.reservation_id", ondelete="CASCADE"), primary_key=True)
+    table_id = Column(Integer, ForeignKey("tables.table_id", ondelete="CASCADE"), primary_key=True)
 

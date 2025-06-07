@@ -1,8 +1,4 @@
-from datetime import date, datetime
-
-from starlette import status
-
-from .crud import create_reservation
+from .crud import create_reservation, get_reservations_by_email
 from .database import check_db_connection
 
 from fastapi import FastAPI, Depends, HTTPException
@@ -57,5 +53,26 @@ def create_reservation_endpoint(
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+@app.get("/reservations/", response_model=list[ReservationResponse])
+def read_reservations_by_email(
+        email: str,
+        db: Session = Depends(get_db)
+):
+    reservations = get_reservations_by_email(db, email)
+
+    if reservations is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Пользователь с таким email не найден"
+        )
+
+    if not reservations:
+        raise HTTPException(
+            status_code=404,
+            detail="У пользователя нет бронирований"
+        )
+    return reservations
 
 
