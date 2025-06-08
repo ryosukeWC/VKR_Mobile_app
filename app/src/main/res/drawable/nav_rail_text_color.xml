@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Активное/выбранное состояние -->
+    <item android:color="#FFA014" android:state_checked="true"/>
+    <item android:color="#FFA014" android:state_selected="true"/>
+
+    <!-- Неактивное состояние -->
+    <item android:color="#D4D7DC" android:state_checked="false"/>
+
+    <!-- Состояние по умолчанию -->
+    <item android:color="#D4D7DC"/>
+</selector>

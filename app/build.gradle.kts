@@ -80,5 +80,9 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
     implementation("com.google.firebase:firebase-analytics")
 
+    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation("com.github.zerobranch:SwipeLayout:1.3.1")
+
+
     implementation(libs.coil)
 }

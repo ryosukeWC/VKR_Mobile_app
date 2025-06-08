@@ -1,6 +1,7 @@
 package com.spau.rwc.network.remote
 
 import com.spau.rwc.network.remote.api.RestaurantApi
+import com.spau.rwc.network.remote.dto.IsAdminDTO
 import com.spau.rwc.network.remote.dto.ReservationResponse
 import com.spau.rwc.network.remote.dto.RestaurantDto
 
@@ -17,5 +18,8 @@ class RestaurantRemoteDataSource(
 
     suspend fun getReservations(email : String) : List<ReservationResponse> {
         return api.getReservationsByEmail(email)
+    }
+    suspend fun isAdmin(email: String) : IsAdminDTO {
+        return api.isUserAdmin(email)
     }
 }

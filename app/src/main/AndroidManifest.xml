@@ -33,6 +33,11 @@
         </activity>
 
         <activity
+            android:name=".admins.MainActivityAdmin"
+            android:exported="false">
+        </activity>
+
+        <activity
             android:name=".authentication.data.AuthActivity"
             android:exported="false" />
 

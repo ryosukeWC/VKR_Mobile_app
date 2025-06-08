@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.spau.rwc.admins.MainActivityAdmin
 import com.spau.rwc.authentication.registration.RegisterBottomSheetFragment
+import com.spau.rwc.databinding.ActivityAdminMainBinding
 import com.spau.rwc.databinding.ActivityAuthBinding
 import com.spau.rwc.ui.main.MainActivity
 import kotlinx.coroutines.Job
@@ -47,7 +49,7 @@ class AuthActivity : AppCompatActivity() {
             }
             is AuthViewModel.AuthState.Success -> {
                 showProgress(false)
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivityAdmin::class.java)) // было MainActivity
                 finish()
             }
             is AuthViewModel.AuthState.Error -> {

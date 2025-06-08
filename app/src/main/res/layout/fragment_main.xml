@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/shape_admin_background"
+    tools:context=".admins.main.MainFragment">
+
+    <SearchView
+        android:id="@+id/search_bar"
+        android:layout_width="280dp"
+        android:layout_height="36dp"
+        android:layout_marginHorizontal="48dp"
+        android:background="@drawable/search_bar_background"
+        android:backgroundTint="#42474A"
+        android:iconifiedByDefault="false"
+        android:queryHint="Поиск"
+        android:layout_marginTop="34dp"
+        android:layout_marginStart="30dp"
+        android:searchIcon="@drawable/icon_search"
+        android:theme="@style/CustomSearchView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </SearchView>
+
+    <ImageView
+        android:id="@+id/notification_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_not"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="55dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/filter_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/filter"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toBottomOf="@+id/filter_tv"
+        app:layout_constraintEnd_toStartOf="@+id/filter_tv"
+        app:layout_constraintTop_toTopOf="@+id/filter_tv">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/button_arrow_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="47dp"
+        android:src="@drawable/icon_arrow_bottom"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_icon"
+        app:layout_constraintEnd_toStartOf="@+id/notification_icon"
+        app:layout_constraintTop_toTopOf="@+id/notification_icon">
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin1"
+        android:textSize="15sp"
+        android:textColor="#C4C4C4"
+        android:fontFamily="@font/inter_medium"
+        android:layout_marginEnd="47dp"
+        app:layout_constraintBottom_toBottomOf="@+id/notification_icon"
+        app:layout_constraintEnd_toStartOf="@+id/button_arrow_bottom"
+        app:layout_constraintTop_toTopOf="@+id/notification_icon">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/some_id_tv"
+        android:layout_width="96dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="2dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="47dp"
+        android:text="История"
+        android:textSize="21sp"
+        android:textColor="#F3F3F3"
+        android:fontFamily="@font/inter_semibold"
+        android:textAppearance="@style/some_id"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+    <TextView
+        android:id="@+id/filter_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="47dp"
+        android:fontFamily="@font/inter_semibold"
+        android:gravity="top"
+        android:text="Фильтр"
+        android:layout_marginEnd="55dp"
+        android:textAppearance="@style/some_id"
+        android:textColor="#F3F3F3"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toBottomOf="@+id/some_id_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/numbers_rv"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/some_id_tv"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_admin_reservation_number"
+        android:layout_marginTop="16dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reservations_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/numbers_rv"
+        android:layout_marginTop="41dp">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

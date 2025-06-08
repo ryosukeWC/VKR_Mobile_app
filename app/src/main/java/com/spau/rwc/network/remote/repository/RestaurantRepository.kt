@@ -1,9 +1,11 @@
 package com.spau.rwc.network.remote.repository
 
 import android.util.Log
+import com.spau.rwc.model.IsAdminResponse
 import com.spau.rwc.model.Reservation
 import com.spau.rwc.model.Restaurant
 import com.spau.rwc.network.remote.RestaurantRemoteDataSource
+import com.spau.rwc.network.remote.dto.IsAdminDTO
 import com.spau.rwc.network.remote.dto.ReservationResponse
 import com.spau.rwc.network.remote.dto.RestaurantDto
 import java.time.LocalDate
@@ -27,6 +29,15 @@ class RestaurantRepository @Inject constructor(
     suspend fun getReservations(email : String): List<Reservation> {
         return remoteDataSource.getReservations(email).map { it.toDomain() }
     }
+    suspend fun isAdmin(email: String) : IsAdminResponse {
+        return remoteDataSource.isAdmin(email).toDomain()
+    }
+}
+
+private fun IsAdminDTO.toDomain() : IsAdminResponse {
+    return IsAdminResponse(
+        isAdmin = isAdmin
+    )
 }
 
 private fun RestaurantDto.toDomain(): Restaurant {

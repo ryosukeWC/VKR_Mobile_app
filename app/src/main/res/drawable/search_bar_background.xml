@@ -2,13 +2,10 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <!-- Закругленные углы -->
     <corners android:radius="11dp" />
 
-    <!-- Цвет фона -->
     <solid android:color="#9CA3AF" />
 
-    <!-- Тень -->
     <padding
         android:left="8dp"
         android:top="8dp"

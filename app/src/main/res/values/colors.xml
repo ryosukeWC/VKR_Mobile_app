@@ -14,4 +14,6 @@
     <color name="status_confirmed">#4CAF50</color>     <!-- зеленый -->
     <color name="status_pending">#FFC107</color>       <!-- желтый -->
     <color name="status_declined">#F44336</color>      <!-- красный -->
+
+
 </resources>

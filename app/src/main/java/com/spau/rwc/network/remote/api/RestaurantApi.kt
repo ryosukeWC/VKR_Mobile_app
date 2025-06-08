@@ -1,5 +1,6 @@
 package com.spau.rwc.network.remote.api
 
+import com.spau.rwc.network.remote.dto.IsAdminDTO
 import com.spau.rwc.network.remote.dto.ReservationResponse
 import com.spau.rwc.network.remote.dto.RestaurantDto
 import retrofit2.http.GET
@@ -19,4 +20,9 @@ interface RestaurantApi {
     suspend fun getRestaurantById(
         @Path("id") restaurantId: Int
     ): RestaurantDto
+
+    @GET("users/is-admin/")
+    suspend fun isUserAdmin(
+        @Query("email") email: String
+    ): IsAdminDTO
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/nav_history"
+            android:title="ИСТОРИЯ"
+            android:checked="true"/>
+        <item
+            android:id="@+id/nav_messages"
+            android:title="СООБЩЕНИЯ"/>
+        <item
+            android:id="@+id/nav_statistics"
+            android:title="СТАТИСТИКА"/>
+        <item
+            android:id="@+id/nav_menu"
+            android:title="МЕНЮ"/>
+        <item
+            android:id="@+id/nav_settings"
+            android:title="НАСТРОЙКИ"/>
+    </group>
+</menu>
