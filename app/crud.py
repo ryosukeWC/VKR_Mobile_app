@@ -13,6 +13,11 @@ def get_restaurant(db: Session, restaurant_id: int):
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.user_email == email).first()
 
+def get_user_admin_status(db: Session, email: str):
+    user = get_user_by_email(db, email)
+    if not user:
+        return None
+    return user.isadmin
 
 def get_reservations_by_email(db: Session, email: str):
     user = get_user_by_email(db, email)

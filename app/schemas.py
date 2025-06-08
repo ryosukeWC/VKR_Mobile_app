@@ -48,4 +48,7 @@ class ReservationResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class IsAdminResponse(BaseModel):
+    isAdmin: bool
+
 

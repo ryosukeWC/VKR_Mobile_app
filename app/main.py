@@ -76,3 +76,19 @@ def read_reservations_by_email(
     return reservations
 
 
+@app.get("/users/is-admin/", response_model=schemas.IsAdminResponse)
+def check_user_admin_status(
+        email: str,
+        db: Session = Depends(get_db)
+):
+    is_admin = crud.get_user_admin_status(db, email)
+
+    if is_admin is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Пользователь с таким email не найден"
+        )
+
+    return {"isAdmin": is_admin}
+
+
